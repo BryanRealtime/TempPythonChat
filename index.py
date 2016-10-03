@@ -63,7 +63,7 @@ class LoginHandler(webapp.RequestHandler):
     que = que.filter('account =',acct)
     que = que.filter('password = ',pw)
 
-    results = que.fetch(limit=1)
+    results = que.fetch(limit=1000)
 
     if len(results) > 0 :
       user = results[0]
@@ -153,7 +153,7 @@ class MessagesHandler(webapp.RequestHandler):
 
   def get(self):
     que = db.Query(ChatMessage).order('-created');
-    chat_list = que.fetch(limit=10)
+    chat_list = que.fetch(limit=1000)
     doRender(self, 'messagelist.htm', {'chat_list': chat_list})
 
 class LogoutHandler(webapp.RequestHandler):
